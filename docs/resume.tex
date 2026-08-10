@@ -1,0 +1,114 @@
+\documentclass[10pt,a4paper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage[top=0.4in, bottom=0.4in, left=0.5in, right=0.5in]{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% --- Color Palette ---
+\definecolor{primary}{HTML}{1A56DB}
+
+% --- Page Style Settings ---
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% --- Links Configuration ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary,
+    pdftitle={Konamraju Sai Sushanth Resume}
+}
+
+% --- Section Formatting ---
+\titleformat{\section}{\normalsize\bfseries\color{primary}\uppercase}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{11pt}{6pt}
+
+% --- List Settings ---
+\setlist[itemize]{leftmargin=14pt, noitemsep, topsep=3pt, parsep=2pt, partopsep=0pt}
+
+\begin{document}
+
+% ================= HEADER =================
+\begin{center}
+    {\LARGE \bfseries Konamraju Sai Sushanth} \\[4pt]
+    \small
+    \href{mailto:sushanthsai626@gmail.com}{sushanthsai626@gmail.com} \enspace $|$ \enspace
+    \href{https://github.com/KSaiSushanth}{github.com/KSaiSushanth} \enspace $|$ \enspace
+    Hyderabad, India
+\end{center}
+
+% ================= SUMMARY =================
+\section*{Professional Summary}
+Computer Science Engineering student with strong foundations in Full-Stack Development, Data Structures \& Algorithms, and Software Engineering. Passionate about building scalable, AI-powered web applications using modern technologies while continuously expanding backend and system design expertise. Seeking opportunities to apply technical skills, solve real-world problems, and grow as a Software Engineer.
+
+% ================= EDUCATION =================
+\section*{Education}
+\textbf{Keshav Memorial Engineering College} \hfill Hyderabad, India \\
+\textit{Bachelor of Technology in Computer Science \& Engineering} \hfill 2023 -- 2027 (Expected)
+
+\vspace{5pt}
+
+\textbf{Sri Medhavi Junior College} \hfill Hyderabad, India \\
+\textit{Intermediate (MPC) -- GPA: 96.2\%} \hfill 2021 -- 2023
+
+\vspace{5pt}
+
+\textbf{Narayana E-Techno School} \hfill Hyderabad, India \\
+\textit{Secondary School Certificate (SSC) -- GPA: 10/10} \hfill 2021
+
+% ================= SKILLS =================
+\section*{Technical Skills}
+\begin{itemize}[label=$\circ$]
+    \item \textbf{Languages:} Java, C, Python, JavaScript, HTML, CSS
+    \item \textbf{Frameworks:} React.js, Node.js, Express.js, Tailwind CSS, TypeScript, Flask
+    \item \textbf{Databases:} MongoDB, MySQL
+    \item \textbf{Tools:} Git, GitHub, VS Code, Jupyter Notebook, REST APIs
+    \item \textbf{Core:} Full-Stack Development, DSA, API Integration, ML Model Integration (Inference, Image Preprocessing)
+\end{itemize}
+
+% ================= PROJECTS =================
+\section*{Projects}
+
+\textbf{FindMySpace} \enspace $|$ \enspace
+\textit{\small React.js \enspace $\bullet$ \enspace Node.js \enspace $\bullet$ \enspace Express.js \enspace $\bullet$ \enspace MongoDB}
+\begin{itemize}[label=$\circ$]
+    \item Developed a full-stack rental property platform using the MERN stack with secure JWT authentication and RESTful APIs.
+    \item Built and integrated property listing, booking, user management, reviews, and messaging modules with MongoDB as the backend database.
+    \item Designed a responsive and modular frontend using reusable React components to provide a seamless user experience across devices.
+    \item Engineered a scalable backend architecture with protected routes, bcrypt password encryption, and efficient CRUD operations.
+    \item FindMySpace is a full-stack rental property platform that enables users to discover, list, and book properties through a secure, responsive, and user-friendly web application.
+\end{itemize}
+
+\vspace{7pt}
+
+\textbf{PrepWise AI} \enspace $|$ \enspace
+\textit{\small React.js \enspace $\bullet$ \enspace Node.js \enspace $\bullet$ \enspace Express.js \enspace $\bullet$ \enspace MongoDB \enspace $\bullet$ \enspace OpenAI API}
+\begin{itemize}[label=$\circ$]
+    \item Developed a full-stack web application using the MERN stack with secure JWT authentication and RESTful APIs.
+    \item Built and integrated AI-powered modules for resume analysis, personalized tutoring, and mock interviews using LLM APIs.
+    \item Designed and implemented responsive dashboards, resume upload workflows, and personalized learning roadmaps with Cloudinary integration.
+    \item Engineered modular backend architecture, prompt-driven AI workflows, and MongoDB data models for scalable interview preparation.
+    \item PrepWise AI is an AI-powered interview preparation platform that personalizes learning based on a user's resume, target company, target role, strengths, and weaknesses to help them become interview-ready through structured learning and realistic mock interviews.
+\end{itemize}
+
+% ================= CERTIFICATIONS =================
+\section*{Certifications \& Training}
+
+\textbf{JPMorgan Chase} \enspace $|$ \enspace Software Engineering Job Simulation (Forage) -- Built a Spring Boot microservice with Kafka integration, Spring Data JPA, REST endpoints, and wrote unit and integration tests using Maven. \hfill \textit{Jan 2026}
+
+\vspace{5pt}
+
+\textbf{IBM SkillsBuild} \enspace $|$ \enspace Frontend Development Internship -- Completed intensive training in modern frontend technologies with hands-on delivery of interactive web projects and responsive design. \hfill \textit{6 Weeks}
+
+\vspace{5pt}
+
+\textbf{MERN Skilling} \enspace $|$ \enspace Earned full-stack development certification through practical MERN stack project implementation and formal presentation. \hfill \textit{2025}
+
+\end{document}
