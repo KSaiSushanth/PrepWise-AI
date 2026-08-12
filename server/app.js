@@ -3,6 +3,10 @@ const cors = require('cors')
 const connectDB = require('./src/config/db')
 require('dotenv').config()
 
+// Route imports
+const authRoutes = require('./src/routes/authRoutes')
+
+
 // Initialize Express
 const app = express()
 
@@ -12,6 +16,9 @@ connectDB()
 // Middleware
 app.use(cors())
 app.use(express.json())
+
+// Routes
+app.use('/api/auth', authRoutes)
 
 // Health Check Route
 app.get('/', (req, res) => {
