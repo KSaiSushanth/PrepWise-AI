@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resume Upload Test</title>
+  <style>
+    body { font-family: sans-serif; padding: 40px; background: #0f172a; color: #e2e8f0; }
+    input, button { display: block; margin: 10px 0; padding: 10px; width: 100%; font-size: 14px; }
+    button { background: #3b82f6; color: white; border: none; cursor: pointer; border-radius: 6px; }
+    button:hover { background: #2563eb; }
+    pre { background: #1e293b; padding: 20px; border-radius: 8px; overflow: auto; font-size: 13px; }
+    label { font-size: 13px; color: #94a3b8; margin-top: 16px; display: block; }
+  </style>
+</head>
+<body>
+  <h2>🚀 PrepWise AI — Resume Upload Tester</h2>
+
+  <label>JWT Token (paste from login response)</label>
+  <input type="text" id="token" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." />
+
+  <label>Select PDF Resume</label>
+  <input type="file" id="resumeFile" accept=".pdf" />
+
+  <button onclick="uploadResume()">Upload Resume</button>
+  <button onclick="getAnalysis()">Get Analysis</button>
+
+  <h3>Response:</h3>
+  <pre id="output">Response will appear here...</pre>
+
+  <script>
+    const BASE_URL = 'http://localhost:5000'
+
+    async function uploadResume() {
+      const token = document.getElementById('token').value.trim()
+      const file = document.getElementById('resumeFile').files[0]
+      const output = document.getElementById('output')
+
+      if (!token) return output.textContent = '❌ Please paste your JWT token first!'
+      if (!file)  return output.textContent = '❌ Please select a PDF file!'
+
+      const formData = new FormData()
+      formData.append('resume', file)
+
+      output.textContent = '⏳ Uploading...'
+
+      try {
+        const res = await fetch(`${BASE_URL}/api/resume/upload`, {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}` },
+          body: formData
+        })
+        const data = await res.json()
+        output.textContent = JSON.stringify(data, null, 2)
+      } catch (err) {
+        output.textContent = '❌ Error: ' + err.message
+      }
+    }
+
+    async function getAnalysis() {
+      const token = document.getElementById('token').value.trim()
+      const output = document.getElementById('output')
+
+      if (!token) return output.textContent = '❌ Please paste your JWT token first!'
+
+      output.textContent = '⏳ Fetching analysis...'
+
+      try {
+        const res = await fetch(`${BASE_URL}/api/resume/analysis`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        })
+        const data = await res.json()
+        output.textContent = JSON.stringify(data, null, 2)
+      } catch (err) {
+        output.textContent = '❌ Error: ' + err.message
+      }
+    }
+  </script>
+</body>
+</html>
