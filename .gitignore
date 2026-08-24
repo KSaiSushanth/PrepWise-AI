@@ -20,3 +20,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Postman internal workspace config (not project code)
+.postman/

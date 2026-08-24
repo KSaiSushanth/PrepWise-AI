@@ -6,10 +6,13 @@ require('dotenv').config()
 // Route imports
 const authRoutes = require('./src/routes/authRoutes')
 const resumeRoutes = require('./src/routes/resumeRoutes')
-
+const setupRoutes   = require('./src/routes/setupRoutes')
+const roadmapRoutes = require('./src/routes/roadmapRoutes')
 const app = express()
 
 connectDB()
+
+
 
 app.use(cors())
 app.use(express.json())
@@ -17,6 +20,8 @@ app.use(express.json())
 // Routes
 app.use('/api/auth', authRoutes)
 app.use('/api/resume', resumeRoutes)
+app.use('/api/setup',   setupRoutes)
+app.use('/api/roadmap', roadmapRoutes)
 
 // Health Check
 app.get('/', (req, res) => {
