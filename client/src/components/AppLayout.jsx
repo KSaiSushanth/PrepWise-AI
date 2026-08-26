@@ -1,13 +1,8 @@
-import { Outlet, Link, useNavigate } from 'react-router-dom'
+import { Outlet, Link } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 function AppLayout() {
-  const navigate = useNavigate()
-
-  const handleLogout = () => {
-    localStorage.removeItem('token')    // clear JWT
-    localStorage.removeItem('user')     // clear user data
-    navigate('/login')                  // redirect to login
-  }
+  const { user, logout } = useAuth()
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
@@ -23,23 +18,18 @@ function AppLayout() {
 
           {/* Nav Links */}
           <div className="flex items-center gap-6 text-sm text-gray-400">
-            <Link to="/dashboard" className="hover:text-white transition-colors">
-              Dashboard
-            </Link>
-            <Link to="/resume" className="hover:text-white transition-colors">
-              Resume
-            </Link>
-            <Link to="/roadmap" className="hover:text-white transition-colors">
-              Roadmap
-            </Link>
-            <Link to="/tutor" className="hover:text-white transition-colors">
-              Tutor
-            </Link>
-            <Link to="/interview" className="hover:text-white transition-colors">
-              Interview
-            </Link>
+            <Link to="/dashboard" className="hover:text-white transition-colors">Dashboard</Link>
+            <Link to="/resume"    className="hover:text-white transition-colors">Resume</Link>
+            <Link to="/roadmap"   className="hover:text-white transition-colors">Roadmap</Link>
+            <Link to="/tutor"     className="hover:text-white transition-colors">Tutor</Link>
+            <Link to="/interview" className="hover:text-white transition-colors">Interview</Link>
+
+            {/* User name from context */}
+            <span className="text-gray-500">|</span>
+            <span className="text-white font-medium">{user?.name}</span>
+
             <button
-              onClick={handleLogout}
+              onClick={logout}
               className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
             >
               Logout
@@ -49,7 +39,7 @@ function AppLayout() {
         </div>
       </nav>
 
-      {/* Page Content — Outlet renders current page here */}
+      {/* Page Content */}
       <main className="max-w-6xl mx-auto px-6 py-8">
         <Outlet />
       </main>

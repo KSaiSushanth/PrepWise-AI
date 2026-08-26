@@ -1,19 +1,14 @@
-import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import API from '../api/axios'
+import { useAuth } from '../context/AuthContext'
 
 function RegisterPage() {
-  const navigate = useNavigate()
+  const { login } = useAuth()
 
   const [formData, setFormData] = useState({ name: '', email: '', password: '' })
   const [loading, setLoading]   = useState(false)
   const [error, setError]       = useState('')
-
-  // If already logged in → redirect to dashboard
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) navigate('/dashboard')
-  }, [])
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -24,7 +19,6 @@ function RegisterPage() {
     setLoading(true)
     setError('')
 
-    // Basic frontend validation
     if (formData.password.length < 6) {
       setError('Password must be at least 6 characters')
       setLoading(false)
@@ -33,11 +27,7 @@ function RegisterPage() {
 
     try {
       const res = await API.post('/auth/register', formData)
-
-      localStorage.setItem('token', res.data.token)
-      localStorage.setItem('user', JSON.stringify(res.data.user))
-
-      navigate('/dashboard')
+      login(res.data.token, res.data.user)   // ← same one-liner
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed. Please try again.')
     } finally {
@@ -48,18 +38,14 @@ function RegisterPage() {
   return (
     <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-
-        {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-blue-400">PrepWise AI 🚀</h1>
           <p className="text-gray-400 mt-2">Create your account to get started.</p>
         </div>
 
-        {/* Card */}
         <div className="bg-gray-900 border border-gray-800 rounded-xl p-8">
           <h2 className="text-xl font-semibold mb-6">Create Account</h2>
 
-          {/* Error Message */}
           {error && (
             <div className="bg-red-900/30 border border-red-700 text-red-400 px-4 py-3 rounded-lg mb-6 text-sm">
               {error}
@@ -67,8 +53,6 @@ function RegisterPage() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
-
-            {/* Name */}
             <div>
               <label className="block text-sm text-gray-400 mb-1">Full Name</label>
               <input
@@ -82,7 +66,6 @@ function RegisterPage() {
               />
             </div>
 
-            {/* Email */}
             <div>
               <label className="block text-sm text-gray-400 mb-1">Email</label>
               <input
@@ -96,7 +79,6 @@ function RegisterPage() {
               />
             </div>
 
-            {/* Password */}
             <div>
               <label className="block text-sm text-gray-400 mb-1">Password</label>
               <input
@@ -110,7 +92,6 @@ function RegisterPage() {
               />
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
               disabled={loading}
@@ -118,18 +99,13 @@ function RegisterPage() {
             >
               {loading ? 'Creating Account...' : 'Create Account'}
             </button>
-
           </form>
 
-          {/* Footer */}
           <p className="text-gray-400 text-sm text-center mt-6">
             Already have an account?{' '}
-            <Link to="/login" className="text-blue-400 hover:text-blue-300">
-              Login
-            </Link>
+            <Link to="/login" className="text-blue-400 hover:text-blue-300">Login</Link>
           </p>
         </div>
-
       </div>
     </div>
   )
